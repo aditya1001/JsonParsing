@@ -20,7 +20,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "contactsM";
+    private static final String DATABASE_NAME = "contactsManager";
 
     // Contacts table name
     private static final String TABLE_CONTACTS = "contacts";
@@ -35,13 +35,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_HOME = "home";
     private static final String KEY_OFFICE = "office";
 
-// ////////////////////////////   Login  ///////////////////////
-public static final String TABLE_Login = "profile";
-    public static final String COLUMN_ID =  "userid";
-    public static final String COLUMN_FULLNAME =  "fullname";
-    public static final String COLUMN_EMAIL =  "email";
-    public static final String COLUMN_PASSWORD =  "password";
-    public static final String COLUMN_MOBILE =  "mobile";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

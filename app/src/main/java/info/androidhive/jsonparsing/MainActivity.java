@@ -80,18 +80,19 @@ public class MainActivity extends AppCompatActivity {
                             intent.setClass(MainActivity.this, Main2Activity.class);
 
                             // intent.putExtra("position", position);
-                            List<Contact> contacts = db.getAllContacts();
+//                            List<Contact> contacts = db.getAllContacts();
 
-                            for (Contact cn : contacts) {
-                                intent.putExtra("id", cn.get_id());
-                                intent.putExtra("name", cn.get_name());
-                                intent.putExtra("email", cn.get_email());
-                                intent.putExtra("mobile", cn.get_mobile());
-                                intent.putExtra("address", cn.get_address());
-                                intent.putExtra("gender", cn.get_gender());
-                                intent.putExtra("home", cn.get_home());
-                                intent.putExtra("office", cn.get_office());
-                            }
+//                            for (Contact cn : contacts) {
+//                                Log.d("Put: ", "Putting .."+cn.get_id()+cn.get_name());
+                                intent.putExtra("id", iid);
+                                intent.putExtra("name", name);
+                                intent.putExtra("email", email);
+                                intent.putExtra("mobile", mobile);
+                                intent.putExtra("address", address);
+                                intent.putExtra("gender", gender);
+                                intent.putExtra("home", home);
+                                intent.putExtra("office",office);
+//                            }
 
 
 

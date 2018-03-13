@@ -35,6 +35,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_HOME = "home";
     private static final String KEY_OFFICE = "office";
 
+// ////////////////////////////   Login  ///////////////////////
+public static final String TABLE_Login = "profile";
+    public static final String COLUMN_ID =  "userid";
+    public static final String COLUMN_FULLNAME =  "fullname";
+    public static final String COLUMN_EMAIL =  "email";
+    public static final String COLUMN_PASSWORD =  "password";
+    public static final String COLUMN_MOBILE =  "mobile";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -50,6 +57,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_ID + " TEXT PRIMARY KEY," + KEY_NAME + " TEXT,"+ KEY_EMAIL+" TEXT,"+KEY_MOBILE+" TEXT,"+
                 KEY_ADDRESS+" TEXT,"+KEY_GENDER+ " TEXT,"+KEY_HOME+" TEXT,"+KEY_OFFICE+" TEXT)"
         );
+
 //        db.execSQL(CREATE_CONTACTS_TABLE);
     }
 

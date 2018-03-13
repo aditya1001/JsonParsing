@@ -1,6 +1,9 @@
 package info.androidhive.jsonparsing;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -9,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Log;
 import android.view.View;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -89,7 +93,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.textViewLinkRegister:
                 // Navigate to RegisterActivity
-                Intent intentRegister = new Intent(getApplicationContext(), RegisterActivity.class);
+                Intent intentRegister = new Intent(this, RegisterActivity.class);
                 startActivity(intentRegister);
                 break;
         }
@@ -115,9 +119,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             Intent accountsIntent = new Intent(activity, MainActivity.class);
             accountsIntent.putExtra("EMAIL", textInputEditTextEmail.getText().toString().trim());
-            emptyInputEditText();
-            startActivity(accountsIntent);
 
+            startActivity(accountsIntent);
+            SharedPreferences preferences = getSharedPreferences("myperf", Context.MODE_WORLD_WRITEABLE);
+            SharedPreferences.Editor editor = preferences.edit();
+
+            Log.d("Put: ", "Putting .."+textInputEditTextEmail.getText().toString());
+            editor.putString("User",textInputEditTextEmail.getText().toString().trim());
+            editor.apply();
+            emptyInputEditText();
 
         } else {
             // Snack Bar to show success message that record is wrong

@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                             String email = contactList.get(position).get("email");
                             String address = contactList.get(position).get("address");
                             String gender = contactList.get(position).get("gender");
+//                            String name = (lv.getItemAtPosition(position));
 
                             // Phone node is JSON Object
 

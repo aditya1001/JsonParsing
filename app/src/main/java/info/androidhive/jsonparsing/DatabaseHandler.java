@@ -43,10 +43,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
+//        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
+//                + KEY_ID + " TEXT PRIMARY KEY," + KEY_NAME + " TEXT,"+ KEY_EMAIL+" TEXT,"+KEY_MOBILE+" TEXT,"+
+//                KEY_ADDRESS+" TEXT,"+KEY_GENDER+ " TEXT,"+KEY_HOME+"TEXT,"+KEY_OFFICE+" TEXT)";
+        db.execSQL("CREATE TABLE " + TABLE_CONTACTS + "("
                 + KEY_ID + " TEXT PRIMARY KEY," + KEY_NAME + " TEXT,"+ KEY_EMAIL+" TEXT,"+KEY_MOBILE+" TEXT,"+
-                KEY_ADDRESS+" TEXT,"+KEY_GENDER+ " TEXT,"+KEY_HOME+"TEXT,"+KEY_OFFICE+"TEXT"+ ")";
-        db.execSQL(CREATE_CONTACTS_TABLE);
+                KEY_ADDRESS+" TEXT,"+KEY_GENDER+ " TEXT,"+KEY_HOME+" TEXT,"+KEY_OFFICE+" TEXT)"
+        );
+//        db.execSQL(CREATE_CONTACTS_TABLE);
     }
 
     // Upgrading database
@@ -99,6 +103,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cursor.getString(1),cursor.getString(2),cursor.getString(3)
                 ,cursor.getString(4),cursor.getString(5),cursor.getString(6)
         ,cursor.getString(7));
+
         return contact;
     }
 

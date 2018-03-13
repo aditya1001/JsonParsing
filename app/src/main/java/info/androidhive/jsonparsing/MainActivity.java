@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     ArrayList<HashMap<String, String>> contactList;
+    DatabaseHandler db = new DatabaseHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,17 @@ public class MainActivity extends AppCompatActivity {
         lv = (ListView) findViewById(R.id.list);
         lv.setOnItemClickListener(menuLsnr);
         new GetContacts().execute();
+
+
+//        // Reading all contacts
+//        Log.d("Reading: ", "Reading all contacts..");
+//        List<Contact> contacts = db.getAllContacts();
+//
+//        for (Contact cn : contacts) {
+//            String log = "Id: "+cn.getID()+" ,Name: " + cn.getName() + " ,Phone: " + cn.getPhoneNumber();
+//            // Writing Contacts to log
+//            Log.d("Name: ", log);
+//        }
     }
          private AdapterView.OnItemClickListener menuLsnr =
                 new AdapterView.OnItemClickListener() {
@@ -66,14 +79,19 @@ public class MainActivity extends AppCompatActivity {
                             intent.setClass(MainActivity.this, Main2Activity.class);
 
                             // intent.putExtra("position", position);
-                            intent.putExtra("id", iid);
-                            intent.putExtra("name", name);
-                            intent.putExtra("email", email);
-                            intent.putExtra("mobile", mobile);
-                            intent.putExtra("address", address);
-                            intent.putExtra("gender", gender);
-                            intent.putExtra("home", home);
-                            intent.putExtra("office", office);
+                            List<Contact> contacts = db.getAllContacts();
+
+                            for (Contact cn : contacts) {
+                                intent.putExtra("id", cn.get_id());
+                                intent.putExtra("name", cn.get_name());
+                                intent.putExtra("email", cn.get_email());
+                                intent.putExtra("mobile", cn.get_mobile());
+                                intent.putExtra("address", cn.get_address());
+                                intent.putExtra("gender", cn.get_gender());
+                                intent.putExtra("home", cn.get_home());
+                                intent.putExtra("office", cn.get_office());
+                            }
+
 
 
 
@@ -85,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 };
+
 
 
 
@@ -149,6 +168,15 @@ public class MainActivity extends AppCompatActivity {
                         contact.put("gender", gender);
                         contact.put("home", home);
                         contact.put("office", office);
+
+
+                        /**
+                         * CRUD Operations
+                         * */
+                        // Inserting Contacts
+                        Log.d("Insert: ", "Inserting ..");
+                        db.addContact(new Contact(id,name,email,mobile,address,gender,home,office));
+
 
                         // adding contact to contact list
                         contactList.add(contact);
